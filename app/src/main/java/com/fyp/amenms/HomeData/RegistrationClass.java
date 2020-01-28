@@ -43,7 +43,7 @@ public class RegistrationClass extends AppCompatActivity implements AdapterView.
         setContentView(R.layout.registration);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-
+        //check
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_Registeration);
         setSupportActionBar(toolbar);
 
