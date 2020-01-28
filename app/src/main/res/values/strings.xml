@@ -1,0 +1,38 @@
+<resources>
+    <string-array name="ExpertiseValue">
+        <item> Mechanic </item>
+        <item> Denter and Painter </item>
+        <item> Electrician </item>
+    </string-array>
+
+    <string name="Name_app">Automobile Maintenance And Emergency Service</string>
+    <string name="app_name">AMAS</string>
+    <string name="app_toolbar_login">Login</string>
+    <string name="value_email">Email</string>
+    <string name="value_password">Password</string>
+    <string name="LOGIN">LOGIN</string>
+    <string name="ForgetPassword">Forget Password?</string>
+    <string name="REGISTER">REGISTER</string>
+    <string name="Profile">Profile</string>
+    <string name="FullName">Full Name</string>
+    <string name="CNIC">CNIC</string>
+    <string name="EMAIL">Email</string>
+    <string name="Password">Password</string>
+    <string name="Experience">Experience</string>
+    <string name="Expertise">Expertise</string>
+    <string name="workinghour">Working Hours</string>
+    <string name="Enter_Email">Enter Email</string>
+    <string name="submitButton">Submit</string>
+    <string name="City">City</string>
+
+    <string-array name="ExperienceValue">
+        <item> Less than 1 Year</item>
+        <item> 1 year </item>
+        <item> More than 1 Years</item>
+    </string-array>
+
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="MobileNumber">Mobile Number</string>
+
+</resources>

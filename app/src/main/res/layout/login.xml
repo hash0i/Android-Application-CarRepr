@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".HomeData.LoginClass">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_Login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20dp">
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_Email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:hint="@string/value_email"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/color_background"
+                android:textColorHint="@color/color_background"
+                android:drawableStart="@drawable/ic_user"
+                android:maxLines="1"
+                android:singleLine="true"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_Password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:hint="@string/value_password"
+                android:inputType="textPassword"
+                android:textColor="@color/color_background"
+                android:textColorHint="@color/color_background"
+                android:drawableStart="@drawable/ic_password"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:onClick="onClick_RegisterationSP" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+        <Button
+            android:id="@+id/login_btn"
+            android:enabled="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/White"
+            android:text="@string/LOGIN" />
+        <TextView
+            android:id="@+id/forgot_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:textSize="13sp"
+            android:textStyle="normal"
+            android:textColor="@color/color_background"
+            android:text="@string/ForgetPassword"
+            android:onClick="onClick_RegisterationSP" />
+        <Button
+            android:id="@+id/register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@color/colorAccent"
+            android:text="@string/REGISTER"
+            android:textColor="@color/White"
+            android:onClick="onClick_RegisterationSP"/>
+
+
+
+
+</LinearLayout>
