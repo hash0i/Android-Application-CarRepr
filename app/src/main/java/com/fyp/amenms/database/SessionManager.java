@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
 
+import com.fyp.amenms.Utilities.Constants;
+
 public class SessionManager {
     // LogCat tag
     private static String TAG = SessionManager.class.getSimpleName();
@@ -38,6 +40,35 @@ public class SessionManager {
 
         Log.d(TAG, "User login session modified!");
     }
+
+    public void putKey(String key, String value) {
+
+        editor.putString(key, value);
+
+        // commit changes
+        editor.commit();
+    }
+
+    public String getKey(String key){
+        return pref.getString(key, "");
+    }
+
+    /*public void setLoggedInUser(Context c, AppUser appUser) {
+        Gson gson = new Gson();
+        String json = gson.toJson(appUser);
+        editor.
+                putString(Constants.LOGGED_IN_USER, json).commit();
+    }
+
+    public static AppUser getLoggedInUser(Context c) {
+
+        Gson gson = new Gson();
+        String json = PreferenceManager.getDefaultSharedPreferences(c).getString(AppConstants.LOGGED_IN_USER, null);
+        AppUser appUser = null;
+        if (json != null)
+            appUser = gson.fromJson(json, AppUser.class);
+        return appUser;
+    }*/
 
     public boolean isLoggedIn(){
         return pref.getBoolean(KEY_IS_LOGGEDIN, false);

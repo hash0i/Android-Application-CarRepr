@@ -1,8 +1,7 @@
-package com.fyp.amenms.HomeData;
+package com.fyp.amenms.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,22 +13,29 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.fyp.amenms.R;
 import com.fyp.amenms.Utilities.Constants;
-import com.fyp.amenms.database.SQLiteHandler;
 import com.fyp.amenms.database.SessionManager;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 //import android.widget.Toolbar;
 
-public class LoginClass extends AppCompatActivity implements View.OnTouchListener {
+public class LoginActivity extends AppCompatActivity implements View.OnTouchListener {
 
     private static final String KEY_EMPTY = "";
 
@@ -38,10 +44,10 @@ public class LoginClass extends AppCompatActivity implements View.OnTouchListene
     private Button btnLogin;
     private ProgressDialog pDialog;
     private TextView forgot_pass;
-    private SharedPreferences app_date;
     private SessionManager sessionManager;
-    private SQLiteHandler db;
     private FirebaseAuth fAuth;
+
+    DatabaseReference firebaseDbReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +60,7 @@ public class LoginClass extends AppCompatActivity implements View.OnTouchListene
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_Login);
         setSupportActionBar(toolbar);
 
-        Log.d("LoginClass","Oncreate");
+        Log.d("LoginActivity","Oncreate");
 
         et_login_email = findViewById(R.id.login_Email);
         et_login_password = findViewById(R.id.login_Password);
@@ -72,20 +78,19 @@ public class LoginClass extends AppCompatActivity implements View.OnTouchListene
 
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
-        try {
 
-            app_date = getSharedPreferences(Constants.PREFS_NAME, MODE_PRIVATE);
-        }
-        catch (Exception e){
-
-        }
-
-        db = new SQLiteHandler(getApplicationContext());
-        sessionManager = new SessionManager(getApplicationContext());
-        if(sessionManager.isLoggedIn())
+        sessionManager = new SessionManager(this);
+        /*if(sessionManager.isLoggedIn())
         {
-            Intent intent = new Intent(LoginClass.this, DashboardActivity.class);
+            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
             startActivity(intent);
+            finish();
+        }*/
+        if(sessionManager.getKey(Constants.PREFS_USER_TYPE).equals(Constants.TYPE_USER)){
+            firebaseDbReference = FirebaseDatabase.getInstance().getReference(Constants.TYPE_USER);
+        } else if(sessionManager.getKey(Constants.PREFS_USER_TYPE).equals(Constants.TYPE_PROVIDER)){
+            firebaseDbReference = FirebaseDatabase.getInstance().getReference(Constants.TYPE_PROVIDER);
+        } else {
             finish();
         }
 
@@ -128,13 +133,13 @@ public class LoginClass extends AppCompatActivity implements View.OnTouchListene
         switch (view.getId()) {
 
             case R.id.register:
-                Intent register =new Intent(LoginClass.this ,RegistrationClass.class);
+                Intent register =new Intent(LoginActivity.this , RegistrationActivity.class);
                 startActivity(register);
                 finish();
                 break;
 
             case R.id.forgot_pass:
-                Intent forget_Password =new Intent(LoginClass.this ,ForgetPasswordClass.class);
+                Intent forget_Password =new Intent(LoginActivity.this ,ForgetPasswordClass.class);
                 startActivity(forget_Password);
                 finish();
                 break;
@@ -153,13 +158,38 @@ public class LoginClass extends AppCompatActivity implements View.OnTouchListene
 
 
     private void checkLogin(String email, String password) {
-        fAuth.signInWithEmailAndPassword(email,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-            @Override
-            public void onSuccess(AuthResult authResult) {
-                Toast.makeText(LoginClass.this,"Log-In Successful",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(LoginClass.this, DashboardActivity.class));
-                finish();
-            }
+        fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            final FirebaseUser firebaseUser = task.getResult().getUser();
+
+                            firebaseDbReference.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    try {
+                                        if (dataSnapshot.getValue() != null) {
+                                            Toast.makeText(LoginActivity.this, "Log-In Successful", Toast.LENGTH_SHORT).show();
+                                            Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
+                                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                            startActivity(i);
+                                        } else {
+                                            Toast.makeText(LoginActivity.this, "Sign in database failed", Toast.LENGTH_LONG).show();
+                                        }
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError firebaseError) {
+                                    Toast.makeText(LoginActivity.this, "Sign in cancelled", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Sign in failed", Toast.LENGTH_LONG).show();
+                        }
+                    }
         });
 
     }
@@ -196,7 +226,7 @@ public class LoginClass extends AppCompatActivity implements View.OnTouchListene
 //
 //                        db.addUser(name, email, uid, create_at);
 //
-//                        Intent intent = new Intent(LoginClass.this,DashboardActivity.class);
+//                        Intent intent = new Intent(LoginActivity.this,DashboardActivity.class);
 //                        startActivity(intent);
 //                        finish();
 //                    }

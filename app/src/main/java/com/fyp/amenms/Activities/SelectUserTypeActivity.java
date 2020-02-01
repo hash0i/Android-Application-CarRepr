@@ -1,7 +1,6 @@
-package com.fyp.amenms.HomeData;
+package com.fyp.amenms.Activities;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,12 +12,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.fyp.amenms.R;
 import com.fyp.amenms.Utilities.Constants;
+import com.fyp.amenms.database.SessionManager;
 
-public class UserTypeClass extends AppCompatActivity implements View.OnClickListener {
+public class SelectUserTypeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button service_seeker;
     private Button service_provider;
-    private SharedPreferences app_date;
+    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,19 +26,13 @@ public class UserTypeClass extends AppCompatActivity implements View.OnClickList
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.user_type);
 
+        sessionManager = new SessionManager(this);
         service_seeker = (Button) findViewById(R.id.service_seeker);
         service_seeker.setOnClickListener(this);
 
 
         service_provider = (Button) findViewById(R.id.service_provider);
         service_provider.setOnClickListener(this);
-
-        try
-        {
-            app_date = getSharedPreferences(Constants.PREFS_NAME, MODE_PRIVATE);
-        }
-        catch (Exception e){
-        }
     }
 
 
@@ -48,21 +42,17 @@ public class UserTypeClass extends AppCompatActivity implements View.OnClickList
         switch (view.getId()) {
             case R.id.service_provider:
 
-                Log.d("UserTypeClass","ServiceProvider");
-                SharedPreferences.Editor editorVal = app_date.edit();
-                editorVal.putString(Constants.PREFS_USER_TYPE,"1");
-                editorVal.apply();
-                Intent loginVal = new Intent(UserTypeClass.this ,LoginClass.class);
+                Log.d("SelectUserTypeActivity","ServiceProvider");
+                sessionManager.putKey(Constants.PREFS_USER_TYPE,Constants.TYPE_PROVIDER);
+                Intent loginVal = new Intent(SelectUserTypeActivity.this , LoginActivity.class);
                 startActivity(loginVal);
                 break;
 
 
             case R.id.service_seeker:
-                Log.d("UserTypeClass","ServiceSeeker");
-                SharedPreferences.Editor editor = app_date.edit();
-                editor.putString(Constants.PREFS_USER_TYPE,"2");
-                editor.apply();
-                Intent login = new Intent(UserTypeClass.this ,LoginClass.class);
+                Log.d("SelectUserTypeActivity","ServiceSeeker");
+                sessionManager.putKey(Constants.PREFS_USER_TYPE,Constants.TYPE_USER);
+                Intent login = new Intent(SelectUserTypeActivity.this , LoginActivity.class);
                 startActivity(login);
                 break;
 

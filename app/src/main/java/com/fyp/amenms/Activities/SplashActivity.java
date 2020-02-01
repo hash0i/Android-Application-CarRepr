@@ -1,4 +1,4 @@
-package com.fyp.amenms.HomeData;
+package com.fyp.amenms.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,15 +13,18 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fyp.amenms.R;
+import com.fyp.amenms.database.SessionManager;
+import com.google.firebase.auth.FirebaseAuth;
 
-public class splashScreen extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
 
     private static int SPLASH_SCREEN = 5000;
 
     Animation topAnim, bottomAnim;
     ImageView image;
     TextView logo;
-
+    FirebaseAuth firebaseAuth;
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class splashScreen extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.ui_splash);
 
+        firebaseAuth = FirebaseAuth.getInstance();
         topAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
         bottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
 
@@ -44,7 +48,7 @@ public class splashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(splashScreen.this, UserTypeClass.class);
+                Intent intent = new Intent(SplashActivity.this, SelectUserTypeActivity.class);
                 startActivity(intent);
                 finish();
             }

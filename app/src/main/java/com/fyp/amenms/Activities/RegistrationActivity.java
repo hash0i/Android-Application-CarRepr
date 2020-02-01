@@ -1,8 +1,7 @@
-package com.fyp.amenms.HomeData;
+package com.fyp.amenms.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -14,6 +13,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import com.fyp.amenms.R;
+import com.fyp.amenms.Utilities.Constants;
+import com.fyp.amenms.database.ProviderHelperClass;
+import com.fyp.amenms.database.SessionManager;
 import com.fyp.amenms.database.UserHelperClass;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,18 +25,20 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class RegistrationClass extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class RegistrationActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private TextInputEditText ET_Name_SP;
     private TextInputEditText ET_CNIC_SP;
     private TextInputEditText ET_EMAIL_SP;
     private TextInputEditText ET_PASSWORD_SP;
-    private TextInputEditText ET_PHONENUMBER_SP;
+    private TextInputEditText ET_PHONENUMBER_SP, ET_EXPERTISE_SP, ET_WORKING_HOURS_SP, ET_EXPERIENCE_SP, ET_ADDRESS_SP;
 
     private Button register_btn;
     private FirebaseAuth fAuth;
     private FirebaseDatabase rootNode;
     private DatabaseReference reference;
+
+    SessionManager sessionManager;
 
 
     @Override
@@ -49,17 +53,32 @@ public class RegistrationClass extends AppCompatActivity implements AdapterView.
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        sessionManager = new SessionManager(this);
 
         ET_Name_SP = findViewById(R.id.ET_Name_SP);
         ET_EMAIL_SP = findViewById(R.id.ET_EMAIL_SP);
         ET_PASSWORD_SP = findViewById(R.id.ET_PASSWORD_SP);
         ET_CNIC_SP = findViewById(R.id.ET_CNIC_SP);
         ET_PHONENUMBER_SP = findViewById(R.id.ET_PHONENUMBER_SP);
+
+        ET_EXPERTISE_SP = findViewById(R.id.ET_EXPERTISE_SP);
+        ET_WORKING_HOURS_SP = findViewById(R.id.ET_WORKING_HOURS_SP);
+        ET_EXPERIENCE_SP = findViewById(R.id.ET_EXPERIENCE_SP);
+        ET_ADDRESS_SP = findViewById(R.id.ET_ADDRESS_SP);
+        rootNode = FirebaseDatabase.getInstance();
+        if(sessionManager.getKey(Constants.PREFS_USER_TYPE).equals(Constants.TYPE_USER)){
+            findViewById(R.id.til_expertise).setVisibility(View.GONE);
+            findViewById(R.id.til_working_hours).setVisibility(View.GONE);
+            findViewById(R.id.til_experience).setVisibility(View.GONE);
+            findViewById(R.id.til_address).setVisibility(View.GONE);
+            reference = rootNode.getReference(Constants.TYPE_USER);
+        } else {
+            reference = rootNode.getReference(Constants.TYPE_PROVIDER);
+        }
+
         register_btn = (Button) findViewById(R.id.register_btn);
 
         fAuth = FirebaseAuth.getInstance();
-        rootNode = FirebaseDatabase.getInstance();
-        reference = rootNode.getReference("users");
 
     }
 
@@ -90,6 +109,21 @@ public class RegistrationClass extends AppCompatActivity implements AdapterView.
             return true;
         }
     }
+
+    private boolean ValidateEmptyField(TextInputEditText textInputEditText) {
+        String Name = textInputEditText.getText().toString().trim();
+        if(Name.isEmpty())
+        {
+            textInputEditText.setError("Field cannot be empty");
+            return false;
+        }
+        else
+        {
+            textInputEditText.setError(null);
+            return true;
+        }
+    }
+
     private boolean ValidateEmail(){
         String email = ET_EMAIL_SP.getText().toString().trim();
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -174,6 +208,8 @@ public class RegistrationClass extends AppCompatActivity implements AdapterView.
         if(!ValidateUserInput()| !ValidateFullName() | !ValidateEmail() | !ValidateCellNo() | !ValidatePassword() | !ValidateCNIC())
         {
             return;
+        } else if(sessionManager.getKey(Constants.PREFS_USER_TYPE).equals(Constants.TYPE_PROVIDER)&&(!ValidateEmptyField(ET_EXPERTISE_SP) | !ValidateEmptyField(ET_WORKING_HOURS_SP) | !ValidateEmptyField(ET_EXPERIENCE_SP) | !ValidateEmptyField(ET_ADDRESS_SP))){
+            return;
         }
         else {
             RegisterUsers(email, password);
@@ -181,31 +217,38 @@ public class RegistrationClass extends AppCompatActivity implements AdapterView.
 
     }
 
-    private void RegisterUsers(String email, String password) {
+    private void RegisterUsers(final String email, final String password) {
 
-        String fullName = ET_Name_SP.getText().toString().trim();
-        String CNIC = ET_CNIC_SP.getText().toString().trim();
-        String mobileNumber = ET_PHONENUMBER_SP.getText().toString().trim();
-
-        fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(RegistrationClass.this, new OnCompleteListener<AuthResult>() {
+        fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(RegistrationActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-
-                    Toast.makeText(RegistrationClass.this,"Register Successful!",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(RegistrationClass.this,LoginClass.class));
+                    String fullName = ET_Name_SP.getText().toString().trim();
+                    String CNIC = ET_CNIC_SP.getText().toString().trim();
+                    String mobileNumber = ET_PHONENUMBER_SP.getText().toString().trim();
+                    if(sessionManager.getKey(Constants.PREFS_USER_TYPE).equals(Constants.TYPE_USER)) {
+                        UserHelperClass helperClass = new UserHelperClass(fullName, CNIC, email, password, mobileNumber);
+                        reference.child(task.getResult().getUser().getUid()).setValue(helperClass);
+                    } else {
+                        ProviderHelperClass providerHelperClass = new ProviderHelperClass(fullName, CNIC, email, password, mobileNumber);
+                        providerHelperClass.setExpertise(ET_EXPERTISE_SP.getText().toString().trim());
+                        providerHelperClass.setWorkingHours(ET_WORKING_HOURS_SP.getText().toString().trim());
+                        providerHelperClass.setExperience(ET_EXPERIENCE_SP.getText().toString().trim());
+                        providerHelperClass.setAddress(ET_ADDRESS_SP.getText().toString().trim());
+                        reference.child(task.getResult().getUser().getUid()).setValue(providerHelperClass);
+                    }
+                    Toast.makeText(RegistrationActivity.this,"Register Successful!",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+                    //intent.putExtra(Constants.PREFS_USER_TYPE, Constants.TYPE_USER);
+                    startActivity(intent);
                     finish();
                 }
                 else
                 {
-                    Toast.makeText(RegistrationClass.this,"Register Failure ",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistrationActivity.this,"Register Failure ",Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-
-        UserHelperClass helperClass = new UserHelperClass(fullName,CNIC,email,password,mobileNumber);
-        reference.child(CNIC).setValue(helperClass);
 
     }
 

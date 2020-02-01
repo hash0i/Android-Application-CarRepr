@@ -20,7 +20,9 @@
     <string name="Password">Password</string>
     <string name="Experience">Experience</string>
     <string name="Expertise">Expertise</string>
+    <string name="find_help">Find Help</string>
     <string name="workinghour">Working Hours</string>
+    <string name="address">Address</string>
     <string name="Enter_Email">Enter Email</string>
     <string name="submitButton">Submit</string>
     <string name="City">City</string>

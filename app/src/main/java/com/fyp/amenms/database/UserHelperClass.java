@@ -2,7 +2,7 @@ package com.fyp.amenms.database;
 
 public class UserHelperClass {
 
-    String name, cnic, email, password, mobNumber;
+    String name="", cnic="", email="", password="", mobNumber="";
 
     public UserHelperClass() {}
 

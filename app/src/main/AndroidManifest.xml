@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.fyp.amenms">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,7 +17,8 @@
         tools:ignore="GoogleAppIndexingWarning">
 
 
-        <activity android:name=".HomeData.splashScreen"
+        <activity
+            android:name=".Activities.SplashActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -23,7 +28,8 @@
 
             </intent-filter>
         </activity>
-        <activity android:name=".HomeData.UserTypeClass"
+        <activity
+            android:name=".Activities.SelectUserTypeActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -31,42 +37,44 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomeData.LoginClass"
+        <activity
+            android:name=".Activities.LoginActivity"
             android:label="@string/app_toolbar_login"
-            android:parentActivityName=".HomeData.UserTypeClass"
+            android:parentActivityName=".Activities.SelectUserTypeActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomeData.ProfileClass"
+        <activity
+            android:name=".Activities.RegistrationActivity"
+            android:label="@string/REGISTER"
+            android:parentActivityName=".Activities.SelectUserTypeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".Activities.ProfileActivity"
             android:label="@string/Profile"
-            android:parentActivityName=".HomeData.UserTypeClass"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
         </activity>
-        <activity android:name=".HomeData.RegistrationClass"
+        <activity
+            android:name=".Activities.ForgetPasswordClass"
             android:label="@string/REGISTER"
-            android:parentActivityName=".HomeData.UserTypeClass"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".HomeData.ForgetPasswordClass"
-            android:label="@string/REGISTER"
-            android:parentActivityName=".HomeData.LoginClass"
+            android:parentActivityName=".Activities.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomeData.DashboardActivity"
+        <activity
+            android:name=".Activities.DashboardActivity"
             android:label="@string/REGISTER"
-            android:parentActivityName=".HomeData.UserTypeClass"
+            android:parentActivityName=".Activities.SelectUserTypeActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
@@ -76,5 +84,11 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAqfKI1s4DXv3zTinuvtC-Z3C24-rtwtvs" />
     </application>
+
+    <!--    AIzaSyAqfKI1s4DXv3zTinuvtC-Z3C24-rtwtvs-->
 </manifest>

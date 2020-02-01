@@ -1,10 +1,10 @@
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/toolbar_main"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#000000"
     android:fitsSystemWindows="true"
     android:minHeight="?attr/actionBarSize"
+    app:title="@string/app_name"
     app:navigationIcon="@drawable/icons8_menu"
     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
