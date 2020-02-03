@@ -26,13 +26,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="122dp"
-        android:fontFamily="@font/emblema_one"
+        android:fontFamily="@font/fugaz_one"
         android:gravity="center"
         android:text="AutoMobile Emergency And Maintenance Service"
-        android:textColor="#42A5F5"
+        android:textColor="#197751"
         android:textSize="30sp"
         android:transitionName="textDisplay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IV_splashScreen"/>
+        app:layout_constraintTop_toBottomOf="@+id/IV_splashScreen" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,11 +10,12 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_Registeration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
+            android:background="#00FFFFFF"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme" />
     </com.google.android.material.appbar.AppBarLayout>
@@ -35,14 +36,16 @@
                 android:layout_marginEnd="15dp"
                 android:layout_marginStart="15dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ET_Name_SP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_medium"
                     android:hint="@string/FullName"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:singleLine="true"/>
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -56,15 +59,17 @@
                 app:counterEnabled="true"
                 app:counterMaxLength="13"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ET_CNIC_SP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_medium"
                     android:hint="@string/CNIC"
                     android:inputType="number"
                     android:maxLength="15"
                     android:maxLines="1"
-                    android:singleLine="true"/>
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -76,14 +81,16 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginLeft="15dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ET_EMAIL_SP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_medium"
                     android:hint="@string/EMAIL"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
-                    android:singleLine="true"/>
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -95,10 +102,12 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginLeft="15dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ET_PASSWORD_SP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_medium"
                     android:hint="@string/Password"
                     android:inputType="textPassword"
                     android:maxLines="1"
@@ -114,10 +123,12 @@
                 app:counterEnabled="true"
                 app:counterMaxLength="11"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ET_PHONENUMBER_SP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_medium"
                     android:hint="@string/MobileNumber"
                     android:inputType="number"
                     android:maxLines="1"
@@ -132,10 +143,12 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginLeft="15dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ET_EXPERTISE_SP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_medium"
                     android:hint="@string/Expertise"
                     android:inputType="text"
                     android:maxLines="1"
@@ -150,10 +163,12 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginLeft="15dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ET_WORKING_HOURS_SP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_medium"
                     android:hint="@string/workinghour"
                     android:inputType="text"
                     android:maxLines="1"
@@ -169,12 +184,14 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginLeft="15dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ET_EXPERIENCE_SP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_medium"
                     android:hint="@string/Experience"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:maxLines="1"
                     android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -188,27 +205,31 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginLeft="15dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ET_ADDRESS_SP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_medium"
                     android:hint="@string/address"
                     android:inputType="text"
                     android:maxLines="3" />
             </com.google.android.material.textfield.TextInputLayout>
 
-                <Button
-                    android:id="@+id/register_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="165dp"
-                    android:layout_marginTop="50dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:text="Register"
-                    android:textAllCaps="true"
-                    android:textColor="@color/White"
-                    android:visibility="visible"
-                    android:onClick="RegisterUser"/>
+            <Button
+                android:id="@+id/register_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="120dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/button_ui"
+                android:fontFamily="@font/sf_bold"
+                android:onClick="RegisterUser"
+                android:text="Register"
+                android:textAllCaps="false"
+                android:textColor="@color/White"
+                android:textColorHint="#00FFFFFF"
+                android:visibility="visible" />
 
 
         </LinearLayout>

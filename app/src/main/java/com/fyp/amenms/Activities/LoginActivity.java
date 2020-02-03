@@ -186,9 +186,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnTouchList
                                     Toast.makeText(LoginActivity.this, "Sign in cancelled", Toast.LENGTH_LONG).show();
                                 }
                             });
-                        } else {
-                            Toast.makeText(LoginActivity.this, "Sign in failed", Toast.LENGTH_LONG).show();
                         }
+                        else { Toast.makeText(LoginActivity.this, "Sign in failed", Toast.LENGTH_LONG).show(); }
                     }
         });
 

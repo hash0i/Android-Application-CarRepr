@@ -10,9 +10,9 @@
     <string name="app_toolbar_login">Login</string>
     <string name="value_email">Email</string>
     <string name="value_password">Password</string>
-    <string name="LOGIN">LOGIN</string>
+    <string name="LOGIN">Login</string>
     <string name="ForgetPassword">Forget Password?</string>
-    <string name="REGISTER">REGISTER</string>
+    <string name="REGISTER">Register</string>
     <string name="Profile">Profile</string>
     <string name="FullName">Full Name</string>
     <string name="CNIC">CNIC</string>
@@ -36,5 +36,6 @@
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="MobileNumber">Mobile Number</string>
+    <string name="Blackspace"> </string>
 
 </resources>
