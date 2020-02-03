@@ -1,6 +1,8 @@
 package com.fyp.amenms.database;
 
-public class ProviderHelperClass {
+import java.io.Serializable;
+
+public class ProviderHelperClass implements Serializable {
 
     String name="";
     String cnic="";

@@ -1,6 +1,8 @@
 package com.fyp.amenms.database;
 
-public class UserHelperClass {
+import java.io.Serializable;
+
+public class UserHelperClass implements Serializable {
 
     String name="", cnic="", email="", password="", mobNumber="";
 

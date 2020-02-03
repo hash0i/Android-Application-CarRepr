@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -38,9 +39,13 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
     private TextInputEditText ET_PHONENUMBER_SP, ET_EXPERTISE_SP, ET_WORKING_HOURS_SP, ET_EXPERIENCE_SP, ET_ADDRESS_SP;
 
     private Button register_btn;
+
+    UserHelperClass userObject;
+    ProviderHelperClass providerObject;
     private FirebaseAuth fAuth;
     private FirebaseDatabase rootNode;
     private DatabaseReference firebaseDbReference;
+    boolean editMode = false;
 
     SessionManager sessionManager;
 
@@ -116,6 +121,7 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
     }
 
     void setUserProfile(UserHelperClass userProfile){
+        userObject = userProfile;
         ET_Name_SP.setText(userProfile.getName());
         ET_CNIC_SP.setText(userProfile.getCnic());
         ET_EMAIL_SP.setText(userProfile.getEmail());
@@ -123,6 +129,7 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
     }
 
     void setProviderProfile(ProviderHelperClass providerProfile){
+        providerObject = providerProfile;
         ET_Name_SP.setText(providerProfile.getName());
         ET_CNIC_SP.setText(providerProfile.getCnic());
         ET_EMAIL_SP.setText(providerProfile.getEmail());
@@ -251,8 +258,16 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
     }
 
 
-    public void RegisterUser(View view) {
-        Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+    public void EditUser(View view) {
+        Intent intent = new Intent(this, ProfileEditActivity.class);
+        if(sessionManager.getKey(Constants.PREFS_USER_TYPE).equals(Constants.TYPE_USER)){
+            intent.putExtra(Constants.LOGGED_IN_USER, userObject);
+        } else {
+            intent.putExtra(Constants.LOGGED_IN_USER, providerObject);
+        }
+
+        startActivityForResult(intent, 100);
+
         /*String email = ET_EMAIL_SP.getText().toString().trim();
         String password = ET_PASSWORD_SP.getText().toString().trim();
 
@@ -266,6 +281,17 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
             RegisterUsers(email, password);
         }*/
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 100){
+            if(resultCode == RESULT_OK){
+                setProfile();
+                Toast.makeText(this, "Updated Profile", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private void RegisterUsers(final String email, final String password) {

@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activities.ProfileActivity">
+    tools:context=".Activities.ProfileEditActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_Registeration"
-            app:title="@string/Profile"
+            app:title="Edit Profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
@@ -41,7 +41,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/FullName"
-                    android:enabled="false"
                     android:inputType="text"
                     android:maxLines="1"
                     android:singleLine="true"/>
@@ -62,7 +61,6 @@
                     android:id="@+id/ET_CNIC_SP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
                     android:hint="@string/CNIC"
                     android:inputType="number"
                     android:maxLength="15"
@@ -106,7 +104,6 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/MobileNumber"
                     android:inputType="number"
-                    android:enabled="false"
                     android:maxLines="1"
                     android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -143,7 +140,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/workinghour"
-                    android:enabled="false"
                     android:inputType="text"
                     android:maxLines="1"
                     android:singleLine="true" />
@@ -162,7 +158,6 @@
                     android:id="@+id/ET_EXPERIENCE_SP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
                     android:hint="@string/Experience"
                     android:inputType="text"
                     android:maxLines="1"
@@ -183,7 +178,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/address"
-                    android:enabled="false"
                     android:inputType="text"
                     android:maxLines="3" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -195,7 +189,7 @@
                 android:layout_marginStart="165dp"
                 android:layout_marginTop="50dp"
                 android:background="@color/colorPrimaryDark"
-                android:text="Edit"
+                android:text="Update"
                 android:textAllCaps="true"
                 android:textColor="@color/White"
                 android:visibility="visible"
