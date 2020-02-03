@@ -61,6 +61,13 @@
             android:label="@string/Profile"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
+
+        <activity
+            android:name=".Activities.ProfileEditActivity"
+            android:label="@string/Profile"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity
             android:name=".Activities.ForgetPasswordClass"
             android:label="@string/REGISTER"
