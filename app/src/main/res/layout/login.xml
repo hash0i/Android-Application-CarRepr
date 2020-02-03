@@ -84,8 +84,8 @@
 
     <Button
         android:id="@+id/login_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="162dp"
+        android:layout_height="58dp"
         android:background="@drawable/button_ui"
         android:enabled="false"
         android:fontFamily="@font/sf_bold"
@@ -121,8 +121,8 @@
 
     <Button
         android:id="@+id/register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="162dp"
+        android:layout_height="58dp"
         android:background="@drawable/button_ui"
         android:fontFamily="@font/sf_bold"
         android:onClick="onClick_RegisterationSP"

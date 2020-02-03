@@ -205,16 +205,16 @@
 
             <Button
                 android:id="@+id/register_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="165dp"
+                android:layout_width="162dp"
+                android:layout_height="58dp"
+                android:layout_marginStart="140dp"
                 android:layout_marginTop="50dp"
-                android:background="@color/colorPrimaryDark"
+                android:background="@drawable/button_ui3"
+                android:onClick="EditUser"
                 android:text="Update"
                 android:textAllCaps="true"
                 android:textColor="@color/White"
-                android:visibility="visible"
-                android:onClick="EditUser"/>
+                android:visibility="visible" />
 
 
         </LinearLayout>

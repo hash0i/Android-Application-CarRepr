@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
-
         <item
             android:id="@+id/profile"
             android:icon="@drawable/ic_user"
             android:title="My Profile" />
-
         <item
             android:id="@+id/change_password"
             android:icon="@drawable/ic_password"
             android:title="Change Password" />
-
-
         <item
             android:id="@+id/my_service"
             android:icon="@drawable/ic_desc"
             android:title="My Orders" />
-
         <item
             android:id="@+id/my_payments"
             android:icon="@drawable/ic_action_payment"
@@ -26,6 +21,5 @@
             android:id="@+id/logout"
             android:icon="@drawable/ic_logout"
             android:title="LOGOUT" />
-
     </group>
 </menu>

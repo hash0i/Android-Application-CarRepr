@@ -22,7 +22,6 @@ public class SessionManager {
 
     // Shared preferences file name
     private static final String PREF_NAME = "AndroidHiveLogin";
-
     private static final String KEY_IS_LOGGEDIN = "isLoggedIn";
 
     public SessionManager(Context context) {
@@ -34,17 +33,14 @@ public class SessionManager {
     public void setLogin(boolean isLoggedIn) {
 
         editor.putBoolean(KEY_IS_LOGGEDIN, isLoggedIn);
-
         // commit changes
         editor.commit();
-
         Log.d(TAG, "User login session modified!");
     }
 
     public void putKey(String key, String value) {
 
         editor.putString(key, value);
-
         // commit changes
         editor.commit();
     }

@@ -60,8 +60,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnTouchList
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_Login);
         setSupportActionBar(toolbar);
 
-        Log.d("LoginActivity","Oncreate");
-
         et_login_email = findViewById(R.id.login_Email);
         et_login_password = findViewById(R.id.login_Password);
         btnLogin = (Button) findViewById(R.id.login_btn);
