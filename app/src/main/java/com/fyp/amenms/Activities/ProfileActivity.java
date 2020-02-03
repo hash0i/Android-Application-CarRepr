@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.fyp.amenms.FirebaseHelpers.FirebaseStorageHelper;
 import com.fyp.amenms.R;
 import com.fyp.amenms.Utilities.Constants;
 import com.fyp.amenms.database.ProviderHelperClass;
@@ -37,7 +39,7 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
     private TextInputEditText ET_EMAIL_SP;
     private TextInputEditText ET_PASSWORD_SP;
     private TextInputEditText ET_PHONENUMBER_SP, ET_EXPERTISE_SP, ET_WORKING_HOURS_SP, ET_EXPERIENCE_SP, ET_ADDRESS_SP;
-
+    ImageView profileImage;
     private Button register_btn;
 
     UserHelperClass userObject;
@@ -48,6 +50,7 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
     boolean editMode = false;
 
     SessionManager sessionManager;
+    FirebaseStorageHelper firebaseStorageHelper;
 
 
     @Override
@@ -69,7 +72,7 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
         ET_PASSWORD_SP = findViewById(R.id.ET_PASSWORD_SP);
         ET_CNIC_SP = findViewById(R.id.ET_CNIC_SP);
         ET_PHONENUMBER_SP = findViewById(R.id.ET_PHONENUMBER_SP);
-
+        profileImage = findViewById(R.id.userProfileImage);
         ET_EXPERTISE_SP = findViewById(R.id.ET_EXPERTISE_SP);
         ET_WORKING_HOURS_SP = findViewById(R.id.ET_WORKING_HOURS_SP);
         ET_EXPERIENCE_SP = findViewById(R.id.ET_EXPERIENCE_SP);
@@ -93,7 +96,15 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
     }
 
     private void setProfile(){
-        firebaseDbReference.child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+
+        firebaseStorageHelper = new FirebaseStorageHelper(this);
+        try {
+            firebaseStorageHelper.displayUserPicture(profileImage, fAuth.getUid());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        firebaseDbReference.child(fAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 try {

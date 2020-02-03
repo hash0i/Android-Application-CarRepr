@@ -29,6 +29,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <com.fyp.amenms.Utilities.RoundedImageView
+                android:id="@+id/userProfileImage"
+                android:layout_gravity="center_horizontal"
+                android:onClick="loadImagefromGallery"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/user1"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+
+            <TextView
+                android:id="@+id/add_photo_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:onClick="loadImagefromGallery"
+                android:text="Update profile photo"
+                android:textColor="@color/colorPrimary" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
