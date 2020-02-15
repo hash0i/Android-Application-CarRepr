@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -57,6 +58,12 @@ public class DashboardActivity extends AppCompatActivity implements OnMapReadyCa
         toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar!=null)
+        {
+            actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.mygradient));
+        }
+
         sessionManager = new SessionManager(this);
         if(sessionManager.getKey(Constants.PREFS_USER_TYPE).equals(Constants.TYPE_PROVIDER)){
             findViewById(R.id.til_expertise).setVisibility(View.GONE);
@@ -206,4 +213,6 @@ public class DashboardActivity extends AppCompatActivity implements OnMapReadyCa
         startActivity(intent);
         finish();
     }
+
+
 }

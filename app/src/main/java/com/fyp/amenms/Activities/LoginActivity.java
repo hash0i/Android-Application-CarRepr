@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnTouchList
     private TextInputEditText et_login_email;
     private TextInputEditText et_login_password;
     private Button btnLogin;
+    private ProgressBar progressBar;
     private ProgressDialog pDialog;
     private TextView forgot_pass;
     private SessionManager sessionManager;
@@ -64,6 +66,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnTouchList
         et_login_password = findViewById(R.id.login_Password);
         btnLogin = (Button) findViewById(R.id.login_btn);
         forgot_pass = (TextView)findViewById(R.id.forgot_pass);
+        progressBar = findViewById(R.id.progressBar);
+
         forgot_pass.setOnTouchListener(this);
 
         ActionBar actionBar = getSupportActionBar();
@@ -98,6 +102,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnTouchList
             public void onClick(View view) {
                 String Email = et_login_email.getText().toString().trim();
                 String Password = et_login_password.getText().toString().trim();
+                progressBar.setVisibility(View.VISIBLE);
+                btnLogin.setVisibility(View.GONE);
                 checkLogin(Email,Password);
             }
         });
@@ -160,6 +166,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnTouchList
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
                             final FirebaseUser firebaseUser = task.getResult().getUser();
 
                             firebaseDbReference.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -171,7 +178,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnTouchList
                                             Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
                                             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                                             startActivity(i);
-                                        } else {
+                                        } else
+                                            {
+                                            progressBar.setVisibility(View.GONE);
+                                            btnLogin.setVisibility(View.VISIBLE);
                                             Toast.makeText(LoginActivity.this, "Sign in database failed", Toast.LENGTH_LONG).show();
                                         }
                                     } catch (Exception e) {
@@ -181,11 +191,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnTouchList
 
                                 @Override
                                 public void onCancelled(DatabaseError firebaseError) {
+                                    progressBar.setVisibility(View.GONE);
+                                    btnLogin.setVisibility(View.VISIBLE);
                                     Toast.makeText(LoginActivity.this, "Sign in cancelled", Toast.LENGTH_LONG).show();
                                 }
                             });
                         }
-                        else { Toast.makeText(LoginActivity.this, "Sign in failed", Toast.LENGTH_LONG).show(); }
+                        else {
+                            progressBar.setVisibility(View.GONE);
+                            btnLogin.setVisibility(View.VISIBLE);
+                            Toast.makeText(LoginActivity.this, "Sign in failed", Toast.LENGTH_LONG).show();
+                        }
                     }
         });
 
@@ -256,18 +272,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnTouchList
 //        AppController.getInstance().addToRequestQueue(stringRequest,tag_string_req);
 //    }
 
-
-
-    private void showDialog() {
-        if(!pDialog.isShowing())
-        {
-            pDialog.show();
-        }
-    }
-    private void hideDialog(){
-        if(pDialog.isShowing())
-        {
+    private void showDialog() {if(!pDialog.isShowing()) {pDialog.show();}}
+    private void hideDialog(){ if(pDialog.isShowing()) {
             pDialog.dismiss();
-        }
-    }
+        } }
+    @Override
+    public void onBackPressed() {}
 }

@@ -28,6 +28,7 @@
     <string name="City">City</string>
     <string name="serviceProvider">Service Provider</string>
     <string name="serviceSeeker">Service Seeker</string>
+    <string name="Home">Home</string>
 
     <string-array name="ExperienceValue">
         <item> Less than 1 Year</item>

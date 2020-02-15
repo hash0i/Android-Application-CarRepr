@@ -5,6 +5,6 @@
     android:background="#147E53"
     android:fitsSystemWindows="true"
     android:minHeight="?attr/actionBarSize"
-    app:title="@string/app_name"
+    app:title="@string/Blackspace"
     app:navigationIcon="@drawable/icons8_menu"
     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />

@@ -19,11 +19,6 @@ import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 
-
-/**
- * Created by Kamran on 3/15/2017.
- */
-
 public class FirebaseStorageHelper {
     private FirebaseStorage firebaseStorage;
     private StorageReference rootRef;

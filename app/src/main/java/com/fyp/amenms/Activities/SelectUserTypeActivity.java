@@ -55,9 +55,9 @@ public class SelectUserTypeActivity extends AppCompatActivity implements View.On
                 Intent login = new Intent(SelectUserTypeActivity.this , LoginActivity.class);
                 startActivity(login);
                 break;
-
-
-
         }
     }
+
+    @Override
+    public void onBackPressed() {}
 }

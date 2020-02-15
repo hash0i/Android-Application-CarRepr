@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/cinzel_bold</item>
         <item>@font/emblema_one</item>
+        <item>@font/finger_paint</item>
         <item>@font/fugaz_one</item>
+        <item>@font/holtwood_one_sc</item>
         <item>@font/trade_winds</item>
+        <item>@font/wendy_one</item>
     </array>
 </resources>

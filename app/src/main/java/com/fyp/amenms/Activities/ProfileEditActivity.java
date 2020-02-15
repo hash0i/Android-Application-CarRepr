@@ -370,5 +370,6 @@ public class ProfileEditActivity extends AppCompatActivity implements AdapterVie
     public void onNothingSelected(AdapterView<?> adapterView) {
     }
 
-
+    @Override
+    public void onBackPressed() {}
 }

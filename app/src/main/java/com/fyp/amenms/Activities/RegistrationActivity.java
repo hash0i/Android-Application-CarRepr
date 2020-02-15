@@ -153,7 +153,7 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
                 "(?=.*[a-zA-Z])" +   //any letter
                 "(?=.*[@#$%^&+=])" +    //at least  1 special character
                 "(?=\\s+$)" +           // no white space
-                ".{4,}" +               //at least 4 characters
+                ".{8,}" +               //at least 8 characters
                 "$";
 
         if(Password.isEmpty())
@@ -199,22 +199,33 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
         }
     }
 
-
     public void RegisterUser(View view) {
 
         String email = ET_EMAIL_SP.getText().toString().trim();
         String password = ET_PASSWORD_SP.getText().toString().trim();
+        boolean val1, val2 ;
 
-        if(!ValidateUserInput()| !ValidateFullName() | !ValidateEmail() | !ValidateCellNo() | !ValidatePassword() | !ValidateCNIC())
-        {
+        if (!ValidateUserInput() | !ValidateFullName() | !ValidateEmail() | !ValidateCellNo() | !ValidatePassword() | !ValidateCNIC()) {
+            val1 = false;
             return;
-        } else if(sessionManager.getKey(Constants.PREFS_USER_TYPE).equals(Constants.TYPE_PROVIDER)&&(!ValidateEmptyField(ET_EXPERTISE_SP) | !ValidateEmptyField(ET_WORKING_HOURS_SP) | !ValidateEmptyField(ET_EXPERIENCE_SP) | !ValidateEmptyField(ET_ADDRESS_SP))){
-            return;
+        } else
+            {
+            val1 = true;
         }
-        else {
+        if (sessionManager.getKey(Constants.PREFS_USER_TYPE).equals(Constants.TYPE_PROVIDER) && (!ValidateEmptyField(ET_EXPERTISE_SP) | !ValidateEmptyField(ET_WORKING_HOURS_SP) | !ValidateEmptyField(ET_EXPERIENCE_SP) | !ValidateEmptyField(ET_ADDRESS_SP))) {
+            val2 = false;
+            return;
+        } else
+            {
+            val2 = true;
+        }
+        if ((val1) && (val2))
+        {
             RegisterUsers(email, password);
         }
-
+        else{
+            Toast.makeText(RegistrationActivity.this,"Register problem!",Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void RegisterUsers(final String email, final String password) {
@@ -226,10 +237,14 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
                     String fullName = ET_Name_SP.getText().toString().trim();
                     String CNIC = ET_CNIC_SP.getText().toString().trim();
                     String mobileNumber = ET_PHONENUMBER_SP.getText().toString().trim();
-                    if(sessionManager.getKey(Constants.PREFS_USER_TYPE).equals(Constants.TYPE_USER)) {
+
+                    if(sessionManager.getKey(Constants.PREFS_USER_TYPE).equals(Constants.TYPE_USER))
+                    {
                         UserHelperClass helperClass = new UserHelperClass(fullName, CNIC, email, password, mobileNumber);
                         reference.child(task.getResult().getUser().getUid()).setValue(helperClass);
-                    } else {
+                    }
+                    else
+                        {
                         ProviderHelperClass providerHelperClass = new ProviderHelperClass(fullName, CNIC, email, password, mobileNumber);
                         providerHelperClass.setExpertise(ET_EXPERTISE_SP.getText().toString().trim());
                         providerHelperClass.setWorkingHours(ET_WORKING_HOURS_SP.getText().toString().trim());
@@ -258,5 +273,6 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) { }
 
-
+    @Override
+    public void onBackPressed() {}
 }

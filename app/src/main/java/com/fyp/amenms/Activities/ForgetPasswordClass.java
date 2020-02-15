@@ -82,6 +82,8 @@ public class ForgetPasswordClass extends AppCompatActivity implements View.OnCli
     }
     @Override
     public void onClick(View view) {
-
     }
+
+    @Override
+    public void onBackPressed() {}
 }
