@@ -30,7 +30,9 @@ public class Constants {
     public static final String LOGGED_IN_USER = "LOGGED_IN_USER";
     public static final String TYPE_USER = "users";
     public static final String TYPE_PROVIDER = "providers";
+    public static final String FD_REQUESTS_NOTE = "requests";
 
+    public static boolean isUserLeave, isRecentClicked, otherAppClicked;
 
     public static void showAlertMessage(Context context, String title, String message) {
         try {
@@ -42,6 +44,18 @@ public class Constants {
 
         } catch (Exception e) {
         }
+    }
+
+    public static class RequestStatus {
+        public static final int ASSIGNED = 0;
+        public static final int ACCEPTED = 1;
+        public static final int CANCELLED = 2;
+        public static final int DONE = 3;
+    }
+
+    public static class RequestStatusUpdatedBy {
+        public static final String USER = "user";
+        public static final String PROVIDER = "provider";
     }
 }
 

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".Activities.AddressMapsActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbarlayout_address_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E5E5E5"
+        android:elevation="@dimen/_5sdp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_address_appBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView_address_back"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_margin="@dimen/_12sdp"
+                android:clickable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_arrow_left_orange" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_semibold"
+                android:text="@string/enter_your_address"
+                android:textAppearance="@style/terms_conditions"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView_address_currentLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_12sdp"
+                android:clickable="true"
+                android:src="@drawable/ic_address_location"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView_address_map"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appbarlayout_address_appbar" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_address_address"
+        style="@style/LoginTextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:textColorHint="@color/grey"
+        android:theme="@style/LoginTextInputLayoutStyle"
+        app:boxBackgroundColor="@color/white"
+        app:boxStrokeColor="@color/grey"
+        app:layout_constraintTop_toBottomOf="@id/appbarlayout_address_appbar">
+
+        <EditText
+            android:id="@+id/textView_address_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="start"
+            android:hint="@string/address"
+            android:inputType="text"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/grey"
+            android:textSize="@dimen/_16sdp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/places_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:background="@drawable/bg_adresses_list"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayout_address_address" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout_address_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:paddingTop="@dimen/_20sdp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/textView_address_confirmButton"
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/sf_semibold"
+            android:gravity="center"
+            android:paddingBottom="@dimen/_5sdp"
+            android:text="@string/confirm"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

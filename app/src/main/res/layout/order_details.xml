@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Activities.order.OrderDetailsActivity"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="Order Details" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="Client"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/name"
+                            android:onClick="onClick"
+                            android:drawableRight="@drawable/ic_desc"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:textSize="14dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1.5dp"
+                            android:background="@color/colorAccent" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="Provider"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:onClick="onClick"
+                            android:drawableRight="@drawable/ic_desc"
+                            android:id="@+id/providerName"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:textSize="14dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1.5dp"
+                            android:background="@color/colorAccent" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="Description"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/description"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:textSize="14dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1.5dp"
+                            android:background="@color/colorAccent" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/num_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp">
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="Contact Number"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/phone_no"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:textSize="14dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1.5dp"
+                            android:background="@color/colorAccent" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/alt_num_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="Alternate Contact Number"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/alternate_contact_num"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:textSize="14dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1.5dp"
+                            android:background="@color/colorAccent" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="Address"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/address"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/ic_location_marker"
+                            android:padding="10dp"
+                            android:textSize="14dp" />
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1.5dp"
+                            android:background="@color/colorAccent" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="Alternate Address"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/alter_address"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@android:color/transparent"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:textSize="14dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1.5dp"
+                            android:background="@color/colorAccent" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp"
+                        android:visibility="visible">
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="2"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:text="Date &amp; Time:"
+                                android:textSize="18dp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/order_date"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:cursorVisible="true"
+                                    android:imeOptions="actionNext"
+                                    android:maxLines="1"
+                                    android:padding="10dp"
+                                    android:singleLine="true" />
+
+                                <ImageView
+                                    android:id="@+id/calender_icon"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="10dp"
+                                    android:padding="2dp"
+                                    android:src="@drawable/ic_calender" />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1.5dp"
+                                android:background="@color/colorAccent" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:paddingLeft="10dp"
+                        android:text="Attached File:"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profile_image"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/user1"
+                        app:border_color="@color/colorPrimary"
+                        app:border_width="1dp" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/accept_order"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="15dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorAccent"
+                            android:text="ACCEPT"
+                            android:textColor="@color/white" />
+
+                        <Button
+                            android:id="@+id/reject_order"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimaryDark"
+                            android:text="CANCEL"
+                            android:textColor="@color/white" />
+
+                        <Button
+                            android:id="@+id/complete_order"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="15dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorAccent"
+                            android:text="Complete Order"
+                            android:textColor="@color/white"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </RelativeLayout>
+        </ScrollView>
+    </LinearLayout>
+
+
+</LinearLayout>

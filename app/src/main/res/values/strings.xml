@@ -41,4 +41,14 @@
     <string name="MobileNumber">Mobile Number</string>
     <string name="Blackspace"> </string>
 
+    <string name="please_wait_msg">Please wait...</string>
+    <string name="enter_your_address">Enter your address</string>
+    <string name="please_enable_gps">Please enable GPS to get precise results</string>
+    <string name="install_google_play_services">Please Install google play services to use this application</string>
+    <string name="something_went_wrong">Something went wrong, please try again later.</string>
+    <string name="confirm">Confirm</string>
+
+    <string name="google_android_map_api_key">AIzaSyAqfKI1s4DXv3zTinuvtC-Z3C24-rtwtvs</string>
+
+    <string name="pick_image_intent_text">Choose Image:</string>
 </resources>

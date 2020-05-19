@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="Place Order"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="Description"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <com.andreabaccega.widget.FormEditText
+                            android:id="@+id/description"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@android:color/transparent"
+                            android:cursorVisible="true"
+                            android:hint="Enter Desription"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:textSize="14dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1.5dp"
+                            android:background="@color/colorAccent" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp">
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="Contact Number"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <com.andreabaccega.widget.FormEditText
+                            android:id="@+id/phone_no"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@android:color/transparent"
+                            android:cursorVisible="true"
+                            android:hint="Enter Contact Number"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:textSize="14dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1.5dp"
+                            android:background="@color/colorAccent" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="Alternate Contact Number"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <com.andreabaccega.widget.FormEditText
+                            android:id="@+id/alternate_contact_num"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@android:color/transparent"
+                            android:cursorVisible="true"
+                            android:hint="Enter Alternate Contact Number"
+                            android:inputType="number"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:textSize="14dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1.5dp"
+                            android:background="@color/colorAccent" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="Address"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <com.andreabaccega.widget.FormEditText
+                            android:id="@+id/address"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@android:color/transparent"
+                            android:cursorVisible="true"
+                            android:hint="Enter Addres"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:textSize="14dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1.5dp"
+                            android:background="@color/colorAccent" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="Alternate Address"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <com.andreabaccega.widget.FormEditText
+                            android:id="@+id/alter_address"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@android:color/transparent"
+                            android:cursorVisible="true"
+                            android:hint="Enter Alternate Address"
+                            android:imeOptions="actionDone"
+                            android:maxLines="1"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:textSize="14dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1.5dp"
+                            android:background="@color/colorAccent" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:visibility="visible">
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="2"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:text="Date &amp; Time:"
+                                android:textSize="18dp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/order_date"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:cursorVisible="true"
+                                    android:hint="Choose Date &amp; Time "
+                                    android:imeOptions="actionNext"
+                                    android:maxLines="1"
+                                    android:padding="10dp"
+                                    android:singleLine="true" />
+
+                                <ImageView
+                                    android:id="@+id/calender_icon"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="10dp"
+                                    android:padding="2dp"
+                                    android:src="@drawable/ic_calender" />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1.5dp"
+                                android:background="@color/colorAccent" />
+
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="10dp"
+                            android:text="Need For:"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+                    <Spinner
+                            android:id="@+id/select_hrs"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/spinner_background"
+                            android:dropDownVerticalOffset="30dp"
+                            android:dropDownWidth="match_parent"
+                            android:textSize="14dp"
+                            android:spinnerMode="dropdown" />
+                        <View
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="1.5dp"
+                            android:background="@color/colorAccent" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:paddingLeft="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorAccent"
+                        android:visibility="gone"
+                        android:text="Attach File:"
+                        android:textAlignment="viewStart" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profile_image"
+                        android:visibility="gone"
+                        android:layout_marginTop="30dp"
+                        android:layout_gravity="center"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:src="@mipmap/ic_applog"
+                        app:border_color="@color/colorPrimary"
+                        app:border_width="1dp" />
+
+
+                    <Button
+                        android:layout_marginTop="15dp"
+                        android:id="@+id/place_order"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@color/colorAccent"
+                        android:textColor="@color/white"
+                        android:text="PLACE ORDER"/>
+
+                </LinearLayout>
+            </RelativeLayout>
+        </ScrollView>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

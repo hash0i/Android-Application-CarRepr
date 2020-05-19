@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnTouchList
         et_login_password.addTextChangedListener(loginTextWatcher);
 
         fAuth = FirebaseAuth.getInstance();
-
+        fAuth.signOut();
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
 
@@ -139,7 +139,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnTouchList
             case R.id.register:
                 Intent register =new Intent(LoginActivity.this , RegistrationActivity.class);
                 startActivity(register);
-                finish();
+                //finish();
                 break;
 
             case R.id.forgot_pass:

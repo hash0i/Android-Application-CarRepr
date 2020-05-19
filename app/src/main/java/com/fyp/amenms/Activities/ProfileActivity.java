@@ -347,5 +347,7 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
     public void onNothingSelected(AdapterView<?> adapterView) { }
 
     @Override
-    public void onBackPressed() {}
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

@@ -6,6 +6,10 @@ public class UserHelperClass implements Serializable {
 
     String name="", cnic="", email="", password="", mobNumber="";
 
+    private double latitude=0;
+    private double longitude=0;
+    private String address = "";
+
     public UserHelperClass() {}
 
     public UserHelperClass(String name, String cnic, String email, String password, String mobNumber) {
@@ -57,5 +61,27 @@ public class UserHelperClass implements Serializable {
     }
 
 
+    public double getLatitude() {
+        return latitude;
+    }
 
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }
