@@ -37,7 +37,7 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
     private TextInputEditText ET_CNIC_SP;
     private TextInputEditText ET_EMAIL_SP;
     private TextInputEditText ET_PASSWORD_SP;
-    private TextInputEditText ET_PHONENUMBER_SP, ET_EXPERTISE_SP, ET_WORKING_HOURS_SP, ET_EXPERIENCE_SP, ET_ADDRESS_SP;
+    private TextInputEditText ET_PHONENUMBER_SP, ET_EXPERTISE_SP, ET_WORKING_HOURS_SP, ET_EXPERIENCE_SP, ET_ADDRESS_SP, ET_BCHARGES_SP;
     private Button register_btn;
     private FirebaseAuth fAuth;
     private FirebaseDatabase rootNode;
@@ -67,12 +67,14 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
         ET_WORKING_HOURS_SP = findViewById(R.id.ET_WORKING_HOURS_SP);
         ET_EXPERIENCE_SP = findViewById(R.id.ET_EXPERIENCE_SP);
         ET_ADDRESS_SP = findViewById(R.id.ET_ADDRESS_SP);
+        ET_BCHARGES_SP = findViewById(R.id.ET_BCHARGES_SP);
         rootNode = FirebaseDatabase.getInstance();
         if (sessionManager.getKey(Constants.PREFS_USER_TYPE).equals(Constants.TYPE_USER)) {
             findViewById(R.id.til_expertise).setVisibility(View.GONE);
             findViewById(R.id.til_working_hours).setVisibility(View.GONE);
             findViewById(R.id.til_experience).setVisibility(View.GONE);
             findViewById(R.id.til_address).setVisibility(View.GONE);
+            findViewById(R.id.til_basicCharges).setVisibility(View.GONE);
             reference = rootNode.getReference(Constants.TYPE_USER);
         } else {
             reference = rootNode.getReference(Constants.TYPE_PROVIDER);
@@ -201,7 +203,7 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
         } else {
             val1 = true;
         }
-        if (sessionManager.getKey(Constants.PREFS_USER_TYPE).equals(Constants.TYPE_PROVIDER) && (!ValidateEmptyField(ET_EXPERTISE_SP) | !ValidateEmptyField(ET_WORKING_HOURS_SP) | !ValidateEmptyField(ET_EXPERIENCE_SP))) {
+        if (sessionManager.getKey(Constants.PREFS_USER_TYPE).equals(Constants.TYPE_PROVIDER) && (!ValidateEmptyField(ET_EXPERTISE_SP) | !ValidateEmptyField(ET_WORKING_HOURS_SP) | !ValidateEmptyField(ET_EXPERIENCE_SP) | !ValidateEmptyField(ET_BCHARGES_SP))) {
             val2 = false;
             return;
         } else {
@@ -238,6 +240,7 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
                         providerHelperClass.setWorkingHours(ET_WORKING_HOURS_SP.getText().toString().trim());
                         providerHelperClass.setExperience(ET_EXPERIENCE_SP.getText().toString().trim());
                         providerHelperClass.setAddress(ET_ADDRESS_SP.getText().toString().trim());
+                        providerHelperClass.setBasicCharges(Integer.parseInt(ET_BCHARGES_SP.getText().toString()));
                         providerHelperClass.setUid(task.getResult().getUser().getUid());
                         reference.child(task.getResult().getUser().getUid()).setValue(providerHelperClass);
 

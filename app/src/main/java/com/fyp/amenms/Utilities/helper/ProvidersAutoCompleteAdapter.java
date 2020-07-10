@@ -140,6 +140,7 @@ public class ProvidersAutoCompleteAdapter extends RecyclerView.Adapter<Providers
         mPredictionHolder.email.setText(mResultList.get(i).getEmail());
         mPredictionHolder.phone_num.setText(mResultList.get(i).getMobNumber());
         mPredictionHolder.category.setText(mResultList.get(i).getExpertise());
+        mPredictionHolder.rate_per_hr.setText("Basic Charges:" +  mResultList.get(i).getBasicCharges());
     }
 
     @Override

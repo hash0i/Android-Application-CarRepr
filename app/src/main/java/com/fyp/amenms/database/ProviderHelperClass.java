@@ -16,6 +16,7 @@ public class ProviderHelperClass implements Serializable {
     private double latitude=0;
     private double longitude=0;
     private String uid = "";
+    private int basicCharges = 0;
 
     public ProviderHelperClass() {}
 
@@ -122,5 +123,13 @@ public class ProviderHelperClass implements Serializable {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public int getBasicCharges() {
+        return basicCharges;
+    }
+
+    public void setBasicCharges(int basicCharges) {
+        this.basicCharges = basicCharges;
     }
 }

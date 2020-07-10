@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
@@ -25,6 +28,7 @@ import com.fyp.amenms.database.RequestHelperClass;
 import com.fyp.amenms.database.SessionManager;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -36,7 +40,8 @@ public class OrderDetailsActivity extends AppCompatActivity implements View.OnCl
     RequestHelperClass order;
     SessionManager sessionManager;
     boolean isProvider = false;
-    private TextView order_date, description, phone_no, alternate_contact_num, address, alter_address, name, providerName;
+    FirebaseStorageHelper firebaseStorageHelper;
+    private TextView order_date, description, phone_no, alternate_contact_num, address, alter_address, name, providerName, orderCharges, paymentMethod;
     private Button accept_order, reject_order, complete_order;
     private SharedPreferences app_date;
     private CircleImageView profile_image;
@@ -47,8 +52,6 @@ public class OrderDetailsActivity extends AppCompatActivity implements View.OnCl
     private FirebaseAuth fAuth;
     private FirebaseDatabase rootNode;
     private DatabaseReference firebaseTypeReference;
-
-    FirebaseStorageHelper firebaseStorageHelper;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,10 +93,10 @@ public class OrderDetailsActivity extends AppCompatActivity implements View.OnCl
             isProvider = true;
             try {
                 firebaseStorageHelper.displayUserPicture(profile_image, order.getUserUid());
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-            if(order.getStatus() == Constants.RequestStatus.ACCEPTED){
+            if (order.getStatus() == Constants.RequestStatus.ACCEPTED) {
                 accept_order.setVisibility(View.GONE);
                 complete_order.setVisibility(View.VISIBLE);
             }
@@ -102,12 +105,12 @@ public class OrderDetailsActivity extends AppCompatActivity implements View.OnCl
             isProvider = false;
             try {
                 firebaseStorageHelper.displayUserPicture(profile_image, order.getProviderUid());
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             accept_order.setVisibility(View.GONE);
         }
-        if(order.getStatus() == Constants.RequestStatus.DONE || order.getStatus() == Constants.RequestStatus.CANCELLED){
+        if (order.getStatus() == Constants.RequestStatus.DONE || order.getStatus() == Constants.RequestStatus.CANCELLED) {
             accept_order.setVisibility(View.GONE);
             reject_order.setVisibility(View.GONE);
             complete_order.setVisibility(View.GONE);
@@ -123,6 +126,8 @@ public class OrderDetailsActivity extends AppCompatActivity implements View.OnCl
         address = findViewById(R.id.address);
         alter_address = findViewById(R.id.alter_address);
         order_date = findViewById(R.id.order_date);
+        orderCharges = findViewById(R.id.orderCharges);
+        paymentMethod = findViewById(R.id.paymentMethod);
         name = findViewById(R.id.name);
 
         providerName = findViewById(R.id.providerName);
@@ -170,6 +175,46 @@ public class OrderDetailsActivity extends AppCompatActivity implements View.OnCl
                 }
                 break;
 
+            case R.id.orderCharges:
+                if(isProvider) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(OrderDetailsActivity.this);
+                    ViewGroup viewGroup = findViewById(android.R.id.content);
+                    View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_update_charges, viewGroup, false);
+                    builder.setView(dialogView);
+
+                    final AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                    alertDialog.setCancelable(false);
+
+                    final TextInputEditText chargesET = dialogView.findViewById(R.id.ET_CHARGES_SP);
+                    chargesET.setText(order.getCharges() + "");
+                    Button buttonOk = dialogView.findViewById(R.id.buttonOk);
+                    buttonOk.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (order.getCharges() != Integer.parseInt(chargesET.getText().toString()) && Integer.parseInt(chargesET.getText().toString()) > 0) {
+                                order.setCharges(Integer.parseInt(chargesET.getText().toString()));
+                                requestsDbReference.child(order.getRequestId()).setValue(order).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Toast.makeText(OrderDetailsActivity.this, "Successfully updated order.", Toast.LENGTH_SHORT).show();
+                                        orderCharges.setText(chargesET.getText().toString());
+                                        alertDialog.dismiss();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(OrderDetailsActivity.this, "Something went wrong, please try again later.", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        }
+                    });
+                } else {
+                    Toast.makeText(this, "Only provider can update this", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
             case R.id.name:
 
 
@@ -201,7 +246,6 @@ public class OrderDetailsActivity extends AppCompatActivity implements View.OnCl
                 break;
 
 
-
             case R.id.accept_order:
                 updateOrder(Constants.RequestStatus.ACCEPTED);
                 break;
@@ -212,12 +256,41 @@ public class OrderDetailsActivity extends AppCompatActivity implements View.OnCl
                 break;
             case R.id.complete_order:
 
-                updateOrder(Constants.RequestStatus.DONE);
+
+
+
+                collectCashPayment();
 
                 break;
 
         }
 
+    }
+
+    public void collectCashPayment(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(OrderDetailsActivity.this);
+        ViewGroup viewGroup = findViewById(android.R.id.content);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_payment_done, viewGroup, false);
+        builder.setView(dialogView);
+
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+        alertDialog.setCancelable(false);
+
+        final TextInputEditText chargesET = dialogView.findViewById(R.id.ET_CHARGES_SP);
+        chargesET.setText(order.getCharges() + "");
+        Button buttonOk = dialogView.findViewById(R.id.buttonOk);
+        buttonOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Integer.parseInt(chargesET.getText().toString()) > 0) {
+
+                    order.setCharges(Integer.parseInt(chargesET.getText().toString()));
+                    alertDialog.dismiss();
+                    updateOrder(Constants.RequestStatus.DONE);
+                }
+            }
+        });
     }
 
 
@@ -230,6 +303,8 @@ public class OrderDetailsActivity extends AppCompatActivity implements View.OnCl
         address.setText(order.getAddress());
         alter_address.setText(order.getAlternateAddress());
         name.setText(order.getUserData().getName());
+        orderCharges.setText(order.getCharges() + "");
+        paymentMethod.setText(order.getPaymentMethod());
         providerName.setText(order.getProviderData().getName());
         phone_no.setText(order.getMobNumber());
         lat = order.getLatitude() + "";
@@ -243,7 +318,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements View.OnCl
     public void updateOrder(int status) {
         order.setStatus(status);
         order.setNotified(false);
-        if(isProvider)
+        if (isProvider)
             order.setStatusUpdatedBy(Constants.RequestStatusUpdatedBy.PROVIDER);
         else
             order.setStatusUpdatedBy(Constants.RequestStatusUpdatedBy.USER);

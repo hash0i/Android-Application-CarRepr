@@ -61,6 +61,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     private final int PERMISSION_REQUEST_CODE = 01010;
     File ImageFile = null;
     String selectedHrs = "";
+    String selectedPaymentMethod = "";
     private FormEditText description, phone_no, alternate_contact_num, address, alter_address;
     private TextView order_date;
     private Button place_order;
@@ -73,6 +74,9 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     private DatabaseReference requestsDbReference;
     private Spinner select_hrs;
     private String[] hoursList = {"Select hours", "1", "2", "3", "4", "5", "6", "7", "8"};
+
+    private Spinner select_payment;
+    private String[] paymentList = {"Select Payment", "Cash", "Online Banking"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -161,6 +165,26 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
             }
         });
+
+        select_payment = findViewById(R.id.select_payment);
+        ArrayAdapter<String> pAdapter = new ArrayAdapter<String>(PlaceOrderActivity.this,
+                android.R.layout.simple_spinner_item, paymentList);
+
+        pAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        select_payment.setAdapter(pAdapter);
+        select_payment.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Log.e("selectedPaymentMethod", adapterView.getItemAtPosition(i).toString());
+                selectedPaymentMethod = adapterView.getItemAtPosition(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     public void CheckValidationsAndPostData() {
@@ -200,11 +224,14 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
                 } else if (selectedHrs.equalsIgnoreCase("") || selectedHrs.equalsIgnoreCase("Select hours")) {
 
                     Constants.showAlertMessage(PlaceOrderActivity.this, "", "Please select hours");
+                } else if (!selectedPaymentMethod.equalsIgnoreCase("Cash")) {
+
+                    Constants.showAlertMessage(PlaceOrderActivity.this, "", "Please select payment method(Only cash for now)");
                 } else {
 
                     placeOrder(description.getText().toString(), order_date.getText().toString(),
                             phone_no.getText().toString(), alternate_contact_num.getText().toString(),
-                            address.getText().toString(), alter_address.getText().toString(), selectedHrs);
+                            address.getText().toString(), alter_address.getText().toString(), selectedHrs, selectedPaymentMethod);
                 }
 
             } catch (Exception e) {
@@ -331,13 +358,15 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
     ////// place order ////////
 
     public void placeOrder(final String request_description, final String order_datetime,
-                           final String phone, final String alt_phone, final String address, final String alt_address, final String total_hours) {
+                           final String phone, final String alt_phone, final String address, final String alt_address, final String total_hours, final String paymentMethod) {
 
         progressDialog = ProgressDialog.show(this, "", getString(R.string.please_wait_msg), true, true);
 
         final RequestHelperClass requestHelperClass = new RequestHelperClass(fAuth.getCurrentUser().getUid(), provider.getUid(), request_description, order_datetime, phone,
                 alt_phone, address, alt_address, total_hours, user.getLatitude(), user.getLongitude());
         requestHelperClass.setUserData(user);
+        requestHelperClass.setCharges(provider.getBasicCharges());
+        requestHelperClass.setPaymentMethod(paymentMethod);
         requestHelperClass.setProviderData(provider);
         String key = requestsDbReference.push().getKey();
         requestHelperClass.setRequestId(key);

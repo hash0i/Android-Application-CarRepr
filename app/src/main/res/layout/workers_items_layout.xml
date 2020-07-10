@@ -81,13 +81,12 @@
                             android:textStyle="italic" />
 
                         <TextView
-                            android:visibility="gone"
                             android:id="@+id/rate_per_hr"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="5dp"
-                            android:text="Rate :RS10/hr"
+                            android:text="Basic Charges :100"
                             android:textAlignment="viewStart"
                             android:textColor="@color/newPDarkColor"
                             android:textSize="10dp"

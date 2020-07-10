@@ -20,6 +20,9 @@ public class RequestHelperClass implements Serializable {
     private int status = 0;
     private String statusUpdatedBy = Constants.RequestStatusUpdatedBy.USER;
     private boolean notified = false;
+    private String paymentMethod="Cash";
+
+    private int charges = 0;
 
     private ProviderHelperClass providerData;
     private UserHelperClass userData;
@@ -177,5 +180,21 @@ public class RequestHelperClass implements Serializable {
 
     public void setUserData(UserHelperClass userData) {
         this.userData = userData;
+    }
+
+    public int getCharges() {
+        return charges;
+    }
+
+    public void setCharges(int charges) {
+        this.charges = charges;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 }

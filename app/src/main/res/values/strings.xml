@@ -19,6 +19,7 @@
     <string name="EMAIL">Email</string>
     <string name="Password">Password</string>
     <string name="Experience">Experience</string>
+    <string name="basic_charges">Basic Charges</string>
     <string name="Expertise">Expertise</string>
     <string name="find_help">Find Help</string>
     <string name="workinghour">Working Hours</string>
@@ -29,6 +30,8 @@
     <string name="serviceProvider">Service Provider</string>
     <string name="serviceSeeker">Service Seeker</string>
     <string name="Home">Home</string>
+
+    <string name="charges">Charges</string>
 
     <string-array name="ExperienceValue">
         <item> Less than 1 Year</item>
@@ -49,6 +52,8 @@
     <string name="confirm">Confirm</string>
 
     <string name="google_android_map_api_key">AIzaSyAqfKI1s4DXv3zTinuvtC-Z3C24-rtwtvs</string>
+
+    <string name="stripe_key">pk_test_51H2CC4F3aW26glmp7e8QI97fnMGqlyXMKGLs3x1dyKGF04OStxI33OOjKLIrnGoWqTA4OX008u8W9tu5xXTQWZ3k00SQCkBUOd</string>
 
     <string name="pick_image_intent_text">Choose Image:</string>
 </resources>

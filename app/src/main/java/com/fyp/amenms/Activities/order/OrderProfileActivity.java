@@ -41,7 +41,7 @@ public class OrderProfileActivity extends AppCompatActivity implements AdapterVi
     private TextInputEditText ET_CNIC_SP;
     private TextInputEditText ET_EMAIL_SP;
     private TextInputEditText ET_PASSWORD_SP;
-    private TextInputEditText ET_PHONENUMBER_SP, ET_EXPERTISE_SP, ET_WORKING_HOURS_SP, ET_EXPERIENCE_SP, ET_ADDRESS_SP;
+    private TextInputEditText ET_PHONENUMBER_SP, ET_EXPERTISE_SP, ET_WORKING_HOURS_SP, ET_EXPERIENCE_SP, ET_ADDRESS_SP, ET_BCHARGES_SP;
     ImageView profileImage;
 
     public static RequestHelperClass requestHelperClass = null;
@@ -74,12 +74,14 @@ public class OrderProfileActivity extends AppCompatActivity implements AdapterVi
         ET_EXPERTISE_SP = findViewById(R.id.ET_EXPERTISE_SP);
         ET_WORKING_HOURS_SP = findViewById(R.id.ET_WORKING_HOURS_SP);
         ET_EXPERIENCE_SP = findViewById(R.id.ET_EXPERIENCE_SP);
+        ET_BCHARGES_SP = findViewById(R.id.ET_BCHARGES_SP);
         ET_ADDRESS_SP = findViewById(R.id.ET_ADDRESS_SP);
         if(!isProvider){
             findViewById(R.id.til_expertise).setVisibility(View.GONE);
             findViewById(R.id.til_working_hours).setVisibility(View.GONE);
             findViewById(R.id.til_experience).setVisibility(View.GONE);
             findViewById(R.id.til_address).setVisibility(View.GONE);
+            findViewById(R.id.til_basicCharges).setVisibility(View.GONE);
         }
         setProfile();
 
@@ -118,6 +120,7 @@ public class OrderProfileActivity extends AppCompatActivity implements AdapterVi
         ET_WORKING_HOURS_SP.setText(providerProfile.getWorkingHours());
         ET_EXPERIENCE_SP.setText(providerProfile.getExperience());
         ET_ADDRESS_SP.setText(providerProfile.getAddress());
+        ET_BCHARGES_SP.setText(providerProfile.getBasicCharges()+"");
     }
 
     public void EditUser(View view) {
